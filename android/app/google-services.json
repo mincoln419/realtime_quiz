@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "892792820573",
+    "firebase_url": "https://realtime-quiz-mermer-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "realtime-quiz-mermer",
+    "storage_bucket": "realtime-quiz-mermer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:892792820573:android:aabe24bdeb5b0c0f1cceb4",
+        "android_client_info": {
+          "package_name": "com.mermer.realtime_quiz_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAy3o00_NvrNBwfQNNrQU-ekSgUvGnqEO8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

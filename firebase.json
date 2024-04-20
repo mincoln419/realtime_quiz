@@ -1,0 +1,60 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "realtime-quiz-mermer",
+          "appId": "1:892792820573:android:aabe24bdeb5b0c0f1cceb4",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "ios": {
+        "default": {
+          "projectId": "realtime-quiz-mermer",
+          "appId": "1:892792820573:ios:5d7c7c7a41bc83081cceb4",
+          "uploadDebugSymbols": false,
+          "fileOutput": "ios/Runner/GoogleService-Info.plist"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "realtime-quiz-mermer",
+          "configurations": {
+            "android": "1:892792820573:android:aabe24bdeb5b0c0f1cceb4",
+            "ios": "1:892792820573:ios:5d7c7c7a41bc83081cceb4",
+            "web": "1:892792820573:web:07623f2e79f8a6131cceb4"
+          }
+        }
+      }
+    }
+  },
+  "database": {
+    "rules": "database.rules.json"
+  },
+  "emulators": {
+    "auth": {
+      "port": 9099
+    },
+    "database": {
+      "port": 9000
+    },
+    "ui": {
+      "enabled": true
+    },
+    "singleProjectMode": true
+  },
+  "hosting": {
+    "public": "build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
