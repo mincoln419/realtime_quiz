@@ -40,8 +40,8 @@ class _QuizAppState extends State<QuizApp> {
   }
 
   fetchQuizInformations() {
-    quizStateRef = database?.ref('${quizDetailPath}/${widget.quizRef}');
-    final quizDetailRef = database?.ref('${quizDetailPath}/${widget.quizRef}');
+    quizStateRef = database?.ref('$quizStatePath/${widget.quizRef}');
+    final quizDetailRef = database?.ref('$quizDetailPath/${widget.quizRef}');
     quizDetailRef?.get().then((value) {
       final obj = jsonDecode(jsonEncode(value.value));
       final quizDetail = QuizDetail.fromJson(obj);
@@ -106,7 +106,33 @@ class _QuizAppState extends State<QuizApp> {
                 Divider(),
                 Text('퀴즈시작상태'),
                 Expanded(
-                  child: Container(),
+                  child: StreamBuilder(
+                    stream: quizStateRef?.child('state').onValue,
+                    builder: (context, AsyncSnapshot<DatabaseEvent> snapshot){
+
+                      if(snapshot.hasData){
+                        final state = snapshot.data?.snapshot.value as bool;
+                        return Center(
+                          child:Column(
+                            children: [
+                              Text(switch(state){
+                                true => '시작!',
+                                false => '대기중',
+                              },
+                              style: TextStyle(
+                                fontSize: 32,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              )
+                            ],
+                          ),
+                        );
+                      }
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                  ),
                 ),
               ],
             ),
