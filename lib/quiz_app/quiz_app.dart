@@ -136,7 +136,54 @@ class _QuizAppState extends State<QuizApp> {
                 ),
               ],
             ),
-          ))
+          )),
+          Positioned.fill(child: StreamBuilder(
+            stream: quizStateRef?.onValue,
+            builder: (context, AsyncSnapshot<DatabaseEvent> snapshot){
+
+              if(snapshot.hasData){
+                int currentIndex = 0;
+                Map snapshotData = snapshot.data?.snapshot.value as Map;
+                final state = snapshotData['state'] as bool;
+                if(snapshotData.containsKey('current')){
+                  currentIndex = snapshotData['current'] as int;
+
+                }
+                problemTriggers.clear();
+                if(snapshotData.containsKey('triggers')){
+                  for(var element in snapshotData['triggers']){
+                    final trigger = element as Map;
+                    problemTriggers.add({
+                      'start': trigger['start'],
+                      'end': trigger['end'],
+                    });
+                  }
+                }
+                if(state){
+                  //problemsets 의 길이, current 길이 비교
+                  if(currentIndex < problemTriggers.length){
+                      return Container(
+                        color: Colors.white,
+                        child: Container(
+                          //문제풀이 위젯 구현
+
+                        ),
+                      );
+                  }else{//문제풀이가 종료된 경우
+                    // 순위를 계산하고 표시하는 위젯 구현
+                    return Container(
+                      color: Colors.red,
+                    );
+                  }
+                }
+              }
+
+              return Center(
+                child: CircularProgressIndicator()
+              );
+            }
+          )
+          )
         ],
       ),
     );
